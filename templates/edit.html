@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit {{ post.title }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Edit: {{ post.title }}</h1>
+    <form method="POST">
+      <label>Title:</label><br>
+      <input type="text" name="title" value="{{ post.title }}" required><br><br>
+
+      <label>Tags (optional):</label><br>
+      <input type="text" name="tags" value="{{ post.get('tags', '') }}"><br><br>
+
+      <label>Content:</label><br>
+      <textarea name="content" id="editor">{{ post.content }}</textarea><br><br>
+
+      <button type="submit">Save Changes</button>
+      <a href="{{ url_for('post', slug=post.slug) }}">Cancel</a>
+    </form>
+  </div>
+
+  <script>
+    const editor = new SimpleMDE({ element: document.getElementById("editor") });
+
+    document.querySelector("form").addEventListener("submit", function (e) {
+      const value = editor.value().trim();
+      if (!value) {
+        alert("Content cannot be empty.");
+        e.preventDefault();
+      } else {
+        document.getElementById("editor").value = value;
+      }
+    });
+  </script>
+</body>
+</html>
+

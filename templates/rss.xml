@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>My Blog</title>
+  <link>https://asrithcheepurupalli.codes/</link>
+  <description>RSS feed for my blog</description>
+  {% for post in posts %}
+  <item>
+    <title>{{ post.title }}</title>
+    <link>https://asrithcheepurupalli.codes/post/{{ post.slug }}</link>
+    <description>{{ post.preview }}</description>
+    <pubDate>{{ post.date }}</pubDate>
+  </item>
+  {% endfor %}
+</channel>
+</rss>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Post</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+</head>
+<body>
+  <h1>New Blog Post</h1>
+  <form method="POST">
+    <input type="text" name="title" placeholder="Post Title" required><br><br>
+    <input type="text" name="tags" placeholder="Comma-separated tags"><br><br>
+    <textarea name="content" id="editor" rows="12" style="display: none;"></textarea>
+
+    <button type="submit">Publish</button>
+  </form>
+
+  
+    
+<script>
+  const editor = new SimpleMDE({ element: document.getElementById("editor") });
+
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const value = editor.value().trim();
+    if (!value) {
+      alert("Post content can't be empty.");
+      e.preventDefault();
+    } else {
+      // Set actual content into textarea before submit
+      document.getElementById("editor").value = value;
+    }
+  });
+</script>
+
+
+</body>
+</html>
