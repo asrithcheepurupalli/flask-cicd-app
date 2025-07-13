@@ -1,0 +1,4 @@
+Flask==2.3.3
+Markdown==3.6
+python-slugify==8.0.1
+feedgen==0.9.0
